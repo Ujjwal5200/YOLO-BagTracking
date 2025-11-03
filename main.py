@@ -8,6 +8,14 @@ from collections import defaultdict
 model = YOLO('runs/detect/train5/weights/best.pt')
 cap = cv2.VideoCapture('video1.mp4')
 class_list= model.names
+
+# Get video properties for output
+frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+fps = cap.get(cv2.CAP_PROP_FPS)
+
+# Define the codec and create VideoWriter object
+out = cv2.VideoWriter('output_video.avi', cv2.VideoWriter_fourcc(*'XVID'), fps, (frame_width, frame_height))
 # Define line positions for counting (vertical lines)
 line_x_red = 150  # Red line position (x-coordinate)
 line_x_blue = line_x_red + 50  # Blue line position (x-coordinate)
@@ -129,6 +137,9 @@ while cap.isOpened():
 
 
     
+    # Write the frame to the output video
+    out.write(frame)
+
     # Show the output frame
     cv2.imshow("YOLO Object Tracking & Counting", frame)
 
@@ -138,4 +149,5 @@ while cap.isOpened():
         break
 # Release resources
 cap.release()
+out.release()
 cv2.destroyAllWindows()
