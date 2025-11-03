@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 2
+names: ['product 1', 'product 2']
+
+roboflow:
+  workspace: insightemporium-umywk
+  project: box-on-convey-tamvr
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/insightemporium-umywk/box-on-convey-tamvr/dataset/1
