@@ -129,13 +129,13 @@ while cap.isOpened():
 
 
     
-    # Show the frame
+    # Show the output frame
     cv2.imshow("YOLO Object Tracking & Counting", frame)
+
 
     # Exit loop if 'ESC' key is pressed
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-
 # Release resources
 cap.release()
 cv2.destroyAllWindows()
